@@ -1,18 +1,18 @@
-import {CartService} from '../services';
+import { CartService } from "../services";
 
 const types = {
-  GET_CART_ITEMS: 'GET_CART_ITEMS',
-  SET_IS_LOADING: 'SET_IS_LOADING',
+  GET_CART_ITEMS: "GET_CART_ITEMS",
+  SET_IS_LOADING: "SET_IS_LOADING",
 };
 
-const addToCart = ({foodId}) => {
-  return dispatch => {
+const addToCart = ({ foodId }) => {
+  return (dispatch) => {
     dispatch({
       type: types.SET_IS_LOADING,
       payload: true,
     });
-    CartService.addToCart({foodId})
-      .then(cartResponse => {
+    CartService.addToCart({ foodId })
+      .then((cartResponse) => {
         dispatch({
           type: types.GET_CART_ITEMS,
           payload: cartResponse?.data,
@@ -31,14 +31,14 @@ const addToCart = ({foodId}) => {
   };
 };
 
-const removeFromCart = ({foodId}) => {
-  return dispatch => {
+const removeFromCart = ({ foodId }) => {
+  return (dispatch) => {
     dispatch({
       type: types.SET_IS_LOADING,
       payload: true,
     });
-    CartService.removeFromCart({foodId})
-      .then(cartResponse => {
+    CartService.removeFromCart({ foodId })
+      .then((cartResponse) => {
         dispatch({
           type: types.GET_CART_ITEMS,
           payload: cartResponse?.data,
@@ -58,13 +58,13 @@ const removeFromCart = ({foodId}) => {
 };
 
 const getCartItems = () => {
-  return dispatch => {
+  return (dispatch) => {
     dispatch({
       type: types.SET_IS_LOADING,
       payload: true,
     });
     CartService.getCartItems()
-      .then(cartResponse => {
+      .then((cartResponse) => {
         dispatch({
           type: types.GET_CART_ITEMS,
           payload: cartResponse?.data,
@@ -83,4 +83,4 @@ const getCartItems = () => {
   };
 };
 
-export default {types, addToCart, removeFromCart, getCartItems};
+export default { types, addToCart, removeFromCart, getCartItems };
