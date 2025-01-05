@@ -1,8 +1,8 @@
-import {GeneralAction} from '../actions';
+import { GeneralAction } from "../actions";
 
 const initialState = {
   isAppLoading: true,
-  token: '',
+  token: "",
   isFirstTimeUse: true,
   userData: {},
 };
@@ -10,13 +10,13 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case GeneralAction.types.SET_IS_APP_LOADING:
-      return {...state, isAppLoading: action.payload};
+      return { ...state, isAppLoading: action.payload };
     case GeneralAction.types.SET_TOKEN:
-      return {...state, token: action.payload};
+      return { ...state, token: action.payload };
     case GeneralAction.types.SET_FIRST_TIME_USE:
-      return {...state, isFirstTimeUse: action.payload};
+      return { ...state, isFirstTimeUse: action.payload };
     case GeneralAction.types.SET_USER_DATA:
-      return {...state, userData: action.payload};
+      return { ...state, userData: action.payload };
     default:
       return state;
   }
