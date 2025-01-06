@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   View,
   Text,
@@ -6,38 +6,38 @@ import {
   StatusBar,
   Image,
   TouchableOpacity,
-} from 'react-native';
-import {Separator, ToggleButton} from '../components';
-import {Colors, Images} from '../constants';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import Feather from 'react-native-vector-icons/Feather';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {Display} from '../utils';
-import {useDispatch} from 'react-redux';
-import {StorageService} from '../services';
-import {GeneralAction} from '../actions';
-import { useFonts } from 'expo-font';
+} from "react-native";
+import { Separator, ToggleButton } from "../components";
+import { Colors, Images } from "../constants";
+import Ionicons from "react-native-vector-icons/Ionicons";
+import Feather from "react-native-vector-icons/Feather";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import { Display } from "../utils";
+import { useDispatch } from "react-redux";
+import { StorageService } from "../services";
+import { GeneralAction } from "../actions";
+import { useFonts } from "expo-font";
 
-const AccountScreen = ({navigation}) => {
+const AccountScreen = ({ navigation }) => {
   const dispatch = useDispatch();
 
   const logout = () => {
-    StorageService.setToken('').then(() => {
-      dispatch(GeneralAction.setToken(''));
+    StorageService.setToken("").then(() => {
+      dispatch(GeneralAction.setToken(""));
       dispatch(GeneralAction.setUserData(null));
     });
   };
 
   const [fontsLoaded] = useFonts({
-    'Poppins Black': require('../assets/fonts/Poppins-Black.ttf'),
-    'Poppins Bold': require('../assets/fonts/Poppins-Bold.ttf'),
-    'Poppins Extra Bold': require('../assets/fonts/Poppins-ExtraBold.ttf'),
-    'Poppins Extra Light': require('../assets/fonts/Poppins-ExtraLight.ttf'),
-    'Poppins Light': require('../assets/fonts/Poppins-Light.ttf'),
-    'Poppins Medium': require('../assets/fonts/Poppins-Medium.ttf'),
-    'Poppins Regular': require('../assets/fonts/Poppins-Regular.ttf'),
-    'Poppins Semi Bold': require('../assets/fonts/Poppins-SemiBold.ttf'),
-    'Poppins Thin': require('../assets/fonts/Poppins-Thin.ttf'),
+    "Poppins Black": require("../assets/fonts/Poppins-Black.ttf"),
+    "Poppins Bold": require("../assets/fonts/Poppins-Bold.ttf"),
+    "Poppins Extra Bold": require("../assets/fonts/Poppins-ExtraBold.ttf"),
+    "Poppins Extra Light": require("../assets/fonts/Poppins-ExtraLight.ttf"),
+    "Poppins Light": require("../assets/fonts/Poppins-Light.ttf"),
+    "Poppins Medium": require("../assets/fonts/Poppins-Medium.ttf"),
+    "Poppins Regular": require("../assets/fonts/Poppins-Regular.ttf"),
+    "Poppins Semi Bold": require("../assets/fonts/Poppins-SemiBold.ttf"),
+    "Poppins Thin": require("../assets/fonts/Poppins-Thin.ttf"),
   });
 
   if (!fontsLoaded) {
@@ -86,21 +86,24 @@ const AccountScreen = ({navigation}) => {
               color={Colors.DEFAULT_GREEN}
             />
           </View>
-          <Text style={styles.menuText}>My All {'\n'}Orders</Text>
+          <Text style={styles.menuText}>My All {"\n"}Orders</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.menuItem} activeOpacity={0.8}>
-          <View style={{...styles.menuIcon, backgroundColor: Colors.LIGHT_RED}}>
+          <View
+            style={{ ...styles.menuIcon, backgroundColor: Colors.LIGHT_RED }}
+          >
             <MaterialCommunityIcons
               name="gift-outline"
               size={18}
               color={Colors.SECONDARY_RED}
             />
           </View>
-          <Text style={styles.menuText}>Offers {'&\n'} Promos</Text>
+          <Text style={styles.menuText}>Offers {"&\n"} Promos</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.menuItem} activeOpacity={0.8}>
           <View
-            style={{...styles.menuIcon, backgroundColor: Colors.LIGHT_YELLOW}}>
+            style={{ ...styles.menuIcon, backgroundColor: Colors.LIGHT_YELLOW }}
+          >
             <Ionicons
               name="location-outline"
               size={18}
@@ -175,7 +178,8 @@ const AccountScreen = ({navigation}) => {
           <TouchableOpacity
             style={styles.sectionTextContainer}
             activeOpacity={0.8}
-            onPress={() => logout()}>
+            onPress={() => logout()}
+          >
             <MaterialCommunityIcons
               name="logout"
               size={18}
@@ -197,54 +201,54 @@ const styles = StyleSheet.create({
   backgroundCurvedContainer: {
     backgroundColor: Colors.DEFAULT_GREEN,
     height: 2000,
-    position: 'absolute',
+    position: "absolute",
     top: -1 * (2000 - 230),
     width: 2000,
     borderRadius: 2000,
-    alignSelf: 'center',
+    alignSelf: "center",
     zIndex: -1,
   },
   headerContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     paddingVertical: 10,
     paddingHorizontal: 20,
   },
   headerText: {
     fontSize: 20,
-    fontFamily: 'Poppins Medium',
+    fontFamily: "Poppins Medium",
     lineHeight: 20 * 1.4,
     color: Colors.DEFAULT_WHITE,
   },
   alertBadge: {
     backgroundColor: Colors.DEFAULT_YELLOW,
-    position: 'absolute',
+    position: "absolute",
     height: 16,
     width: 16,
     borderRadius: 32,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     right: -2,
     top: -10,
   },
   alertBadgeText: {
     fontSize: 10,
-    fontFamily: 'Poppins Bold',
+    fontFamily: "Poppins Bold",
     lineHeight: 10 * 1.4,
     color: Colors.DEFAULT_WHITE,
   },
   profileHeaderContainer: {
     marginHorizontal: 20,
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     marginTop: 10,
   },
   profileImageContainer: {
     backgroundColor: Colors.DEFAULT_WHITE,
     borderRadius: 32,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     padding: 1,
     elevation: 3,
   },
@@ -258,13 +262,13 @@ const styles = StyleSheet.create({
   },
   nameText: {
     fontSize: 14,
-    fontFamily: 'Poppins Regular',
+    fontFamily: "Poppins Regular",
     lineHeight: 14 * 1.4,
     color: Colors.DEFAULT_WHITE,
   },
   emailText: {
     fontSize: 10,
-    fontFamily: 'Poppins Regular',
+    fontFamily: "Poppins Regular",
     lineHeight: 10 * 1.4,
     color: Colors.DEFAULT_WHITE,
   },
@@ -274,28 +278,28 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     marginTop: 20,
     elevation: 3,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
     paddingVertical: 20,
   },
   menuItem: {
     flex: 1,
-    alignItems: 'center',
+    alignItems: "center",
   },
   menuIcon: {
     backgroundColor: Colors.LIGHT_GREEN,
     height: Display.setWidth(8),
     width: Display.setWidth(8),
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     borderRadius: 32,
   },
   menuText: {
     fontSize: 12,
-    fontFamily: 'Poppins Semi Bold',
+    fontFamily: "Poppins Semi Bold",
     lineHeight: 12 * 1.4,
     color: Colors.DEFAULT_BLACK,
-    textAlign: 'center',
+    textAlign: "center",
     marginTop: 5,
   },
   mainContainer: {
@@ -309,24 +313,24 @@ const styles = StyleSheet.create({
   },
   sectionHeaderText: {
     fontSize: 14,
-    fontFamily: 'Poppins Semi Bold',
+    fontFamily: "Poppins Semi Bold",
     lineHeight: 14 * 1.4,
     color: Colors.DEFAULT_BLACK,
     marginTop: 25,
   },
   sectionContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
     marginTop: 15,
   },
   sectionTextContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
   },
   sectionText: {
     fontSize: 13,
-    fontFamily: 'Poppins Regular',
+    fontFamily: "Poppins Regular",
     lineHeight: 13 * 1.4,
     color: Colors.INACTIVE_GREY,
     marginLeft: 10,

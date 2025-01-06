@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   View,
   Text,
@@ -7,34 +7,34 @@ import {
   ScrollView,
   TouchableOpacity,
   Image,
-} from 'react-native';
-import {Colors, Fonts, Images} from '../constants';
-import {FoodCard, Separator} from '../components';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import Entypo from 'react-native-vector-icons/Entypo';
-import AntDesign from 'react-native-vector-icons/AntDesign';
-import {Display} from '../utils';
-import {useSelector} from 'react-redux';
-import { useFonts } from 'expo-font';
+} from "react-native";
+import { Colors, Fonts, Images } from "../constants";
+import { FoodCard, Separator } from "../components";
+import Ionicons from "react-native-vector-icons/Ionicons";
+import Entypo from "react-native-vector-icons/Entypo";
+import AntDesign from "react-native-vector-icons/AntDesign";
+import { Display } from "../utils";
+import { useSelector } from "react-redux";
+import { useFonts } from "expo-font";
 
-const CartScreen = ({navigation}) => {
-  const cart = useSelector(state => state?.cartState?.cart);
+const CartScreen = ({ navigation }) => {
+  const cart = useSelector((state) => state?.cartState?.cart);
   const [fontsLoaded] = useFonts({
-    'Poppins Black': require('../assets/fonts/Poppins-Black.ttf'),
-    'Poppins Bold': require('../assets/fonts/Poppins-Bold.ttf'),
-    'Poppins Extra Bold': require('../assets/fonts/Poppins-ExtraBold.ttf'),
-    'Poppins Extra Light': require('../assets/fonts/Poppins-ExtraLight.ttf'),
-    'Poppins Light': require('../assets/fonts/Poppins-Light.ttf'),
-    'Poppins Medium': require('../assets/fonts/Poppins-Medium.ttf'),
-    'Poppins Regular': require('../assets/fonts/Poppins-Regular.ttf'),
-    'Poppins Semi Bold': require('../assets/fonts/Poppins-SemiBold.ttf'),
-    'Poppins Thin': require('../assets/fonts/Poppins-Thin.ttf'),
+    "Poppins Black": require("../assets/fonts/Poppins-Black.ttf"),
+    "Poppins Bold": require("../assets/fonts/Poppins-Bold.ttf"),
+    "Poppins Extra Bold": require("../assets/fonts/Poppins-ExtraBold.ttf"),
+    "Poppins Extra Light": require("../assets/fonts/Poppins-ExtraLight.ttf"),
+    "Poppins Light": require("../assets/fonts/Poppins-Light.ttf"),
+    "Poppins Medium": require("../assets/fonts/Poppins-Medium.ttf"),
+    "Poppins Regular": require("../assets/fonts/Poppins-Regular.ttf"),
+    "Poppins Semi Bold": require("../assets/fonts/Poppins-SemiBold.ttf"),
+    "Poppins Thin": require("../assets/fonts/Poppins-Thin.ttf"),
   });
 
   if (!fontsLoaded) {
     return null;
   }
-  
+
   return (
     <View style={styles.container}>
       <StatusBar
@@ -55,12 +55,12 @@ const CartScreen = ({navigation}) => {
         <>
           <ScrollView>
             <View style={styles.foodList}>
-              {cart?.cartItems?.map(item => (
+              {cart?.cartItems?.map((item) => (
                 <FoodCard
                   {...item?.food}
                   key={item?.food?.id}
                   navigate={() =>
-                    navigation.navigate('Food', {foodId: item?.id})
+                    navigation.navigate("Food", { foodId: item?.id })
                   }
                 />
               ))}
@@ -92,7 +92,8 @@ const CartScreen = ({navigation}) => {
               <View style={styles.amountSubContainer}>
                 <Text style={styles.amountLabelText}>Delivery Fee</Text>
                 <Text
-                  style={{...styles.amountText, color: Colors.DEFAULT_GREEN}}>
+                  style={{ ...styles.amountText, color: Colors.DEFAULT_GREEN }}
+                >
                   Free
                 </Text>
               </View>
@@ -147,41 +148,41 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.DEFAULT_WHITE,
   },
   headerContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     paddingVertical: 10,
     paddingHorizontal: 20,
   },
   headerTitle: {
     fontSize: 20,
-    fontFamily: 'Poppins Medium',
+    fontFamily: "Poppins Medium",
     lineHeight: 20 * 1.4,
     width: Display.setWidth(80),
-    textAlign: 'center',
+    textAlign: "center",
   },
   foodList: {
     marginHorizontal: Display.setWidth(4),
   },
   promoCodeContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     marginHorizontal: Display.setWidth(4),
     paddingVertical: 15,
     marginTop: 10,
     borderTopWidth: 0.5,
     borderBottomWidth: 0.5,
-    justifyContent: 'space-between',
+    justifyContent: "space-between",
   },
   promoCodeText: {
     fontSize: 15,
-    fontFamily: 'Poppins Medium',
+    fontFamily: "Poppins Medium",
     lineHeight: 15 * 1.4,
     color: Colors.DEFAULT_BLACK,
     marginLeft: 10,
   },
   rowAndCenter: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
   },
   amountContainer: {
     marginHorizontal: Display.setWidth(4),
@@ -189,20 +190,20 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0.5,
   },
   amountSubContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
     marginVertical: 3,
   },
   amountLabelText: {
     fontSize: 15,
-    fontFamily: 'Poppins Semi Bold',
+    fontFamily: "Poppins Semi Bold",
     lineHeight: 15 * 1.4,
     color: Colors.DEFAULT_GREEN,
   },
   amountText: {
     fontSize: 15,
-    fontFamily: 'Poppins Semi Bold',
+    fontFamily: "Poppins Semi Bold",
     lineHeight: 15 * 1.4,
     color: Colors.DEFAULT_BLACK,
   },
@@ -210,65 +211,65 @@ const styles = StyleSheet.create({
     marginHorizontal: Display.setWidth(4),
     paddingVertical: 15,
     borderBottomWidth: 0.5,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   totalText: {
     fontSize: 20,
-    fontFamily: 'Poppins Semi Bold',
+    fontFamily: "Poppins Semi Bold",
     lineHeight: 20 * 1.4,
     color: Colors.DEFAULT_BLACK,
   },
   checkoutButton: {
-    flexDirection: 'row',
+    flexDirection: "row",
     width: Display.setWidth(80),
     backgroundColor: Colors.DEFAULT_GREEN,
-    alignSelf: 'center',
+    alignSelf: "center",
     paddingHorizontal: 20,
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    justifyContent: "space-between",
+    alignItems: "center",
     borderRadius: 10,
     height: Display.setHeight(7),
     marginTop: 10,
   },
   checkoutText: {
     fontSize: 16,
-    fontFamily: 'Poppins Medium',
+    fontFamily: "Poppins Medium",
     lineHeight: 16 * 1.4,
     color: Colors.DEFAULT_WHITE,
     marginLeft: 8,
   },
   emptyCartContainer: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   emptyCartText: {
     fontSize: 30,
-    fontFamily: 'Poppins Light',
+    fontFamily: "Poppins Light",
     lineHeight: 30 * 1.4,
     color: Colors.DEFAULT_GREEN,
   },
   emptyCartSubText: {
     fontSize: 12,
-    fontFamily: 'Poppins Medium',
+    fontFamily: "Poppins Medium",
     lineHeight: 12 * 1.4,
     color: Colors.INACTIVE_GREY,
   },
   addButtonEmpty: {
-    flexDirection: 'row',
+    flexDirection: "row",
     backgroundColor: Colors.DEFAULT_YELLOW,
     borderRadius: 8,
     paddingHorizontal: Display.setWidth(4),
     paddingVertical: 5,
     marginTop: 10,
-    justifyContent: 'space-evenly',
+    justifyContent: "space-evenly",
     elevation: 3,
-    alignItems: 'center',
+    alignItems: "center",
   },
   addButtonEmptyText: {
     fontSize: 12,
-    fontFamily: 'Poppins Medium',
+    fontFamily: "Poppins Medium",
     lineHeight: 12 * 1.4,
     color: Colors.DEFAULT_WHITE,
     marginLeft: 10,

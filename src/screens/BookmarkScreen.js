@@ -1,41 +1,41 @@
-import React from 'react';
-import {View, Text, StyleSheet, StatusBar, FlatList} from 'react-native';
-import {Colors, Fonts} from '../constants';
-import {BookmarkCard, Separator} from '../components';
-import {Display} from '../utils';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import {useSelector} from 'react-redux';
-import { useFonts } from 'expo-font';
+import React from "react";
+import { View, Text, StyleSheet, StatusBar, FlatList } from "react-native";
+import { Colors, Fonts } from "../constants";
+import { BookmarkCard, Separator } from "../components";
+import { Display } from "../utils";
+import Ionicons from "react-native-vector-icons/Ionicons";
+import { useSelector } from "react-redux";
+import { useFonts } from "expo-font";
 
 const ListItemSeparator = () => (
   <View
     style={{
       height: 0.8,
       backgroundColor: Colors.DEFAULT_GREY,
-      width: '100%',
+      width: "100%",
       marginVertical: 10,
     }}
   />
 );
 
-const BookmarkScreen = ({navigation}) => {
-  const bookmarks = useSelector(state => state?.bookmarkState?.bookmarks);
+const BookmarkScreen = ({ navigation }) => {
+  const bookmarks = useSelector((state) => state?.bookmarkState?.bookmarks);
   const [fontsLoaded] = useFonts({
-    'Poppins Black': require('../assets/fonts/Poppins-Black.ttf'),
-    'Poppins Bold': require('../assets/fonts/Poppins-Bold.ttf'),
-    'Poppins Extra Bold': require('../assets/fonts/Poppins-ExtraBold.ttf'),
-    'Poppins Extra Light': require('../assets/fonts/Poppins-ExtraLight.ttf'),
-    'Poppins Light': require('../assets/fonts/Poppins-Light.ttf'),
-    'Poppins Medium': require('../assets/fonts/Poppins-Medium.ttf'),
-    'Poppins Regular': require('../assets/fonts/Poppins-Regular.ttf'),
-    'Poppins Semi Bold': require('../assets/fonts/Poppins-SemiBold.ttf'),
-    'Poppins Thin': require('../assets/fonts/Poppins-Thin.ttf'),
+    "Poppins Black": require("../assets/fonts/Poppins-Black.ttf"),
+    "Poppins Bold": require("../assets/fonts/Poppins-Bold.ttf"),
+    "Poppins Extra Bold": require("../assets/fonts/Poppins-ExtraBold.ttf"),
+    "Poppins Extra Light": require("../assets/fonts/Poppins-ExtraLight.ttf"),
+    "Poppins Light": require("../assets/fonts/Poppins-Light.ttf"),
+    "Poppins Medium": require("../assets/fonts/Poppins-Medium.ttf"),
+    "Poppins Regular": require("../assets/fonts/Poppins-Regular.ttf"),
+    "Poppins Semi Bold": require("../assets/fonts/Poppins-SemiBold.ttf"),
+    "Poppins Thin": require("../assets/fonts/Poppins-Thin.ttf"),
   });
 
   if (!fontsLoaded) {
     return null;
   }
-  
+
   return (
     <View style={styles.container}>
       <StatusBar
@@ -55,16 +55,16 @@ const BookmarkScreen = ({navigation}) => {
       <FlatList
         style={styles.bookmarkList}
         data={bookmarks}
-        keyExtractor={item => item?.restaurantId}
+        keyExtractor={(item) => item?.restaurantId}
         showsVerticalScrollIndicator={false}
         ListHeaderComponent={() => <Separator height={10} />}
         ListFooterComponent={() => <Separator height={10} />}
         ItemSeparatorComponent={() => <ListItemSeparator />}
-        renderItem={({item}) => (
+        renderItem={({ item }) => (
           <BookmarkCard
             {...item?.restaurant}
-            navigate={restaurantId =>
-              navigation.navigate('Restaurant', {restaurantId})
+            navigate={(restaurantId) =>
+              navigation.navigate("Restaurant", { restaurantId })
             }
           />
         )}
@@ -79,17 +79,17 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.DEFAULT_WHITE,
   },
   headerContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     paddingVertical: 10,
     paddingHorizontal: 20,
   },
   headerTitle: {
     fontSize: 20,
-    fontFamily: 'Poppins Medium',
+    fontFamily: "Poppins Medium",
     lineHeight: 20 * 1.4,
     width: Display.setWidth(80),
-    textAlign: 'center',
+    textAlign: "center",
   },
   bookmarkList: {
     marginHorizontal: 20,
