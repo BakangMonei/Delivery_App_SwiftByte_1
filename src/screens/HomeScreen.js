@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -7,34 +7,34 @@ import {
   ScrollView,
   FlatList,
   TouchableOpacity,
-} from 'react-native';
+} from "react-native";
 import {
   CategoryMenuItem,
   RestaurantCard,
   RestaurantMediumCard,
   Separator,
-} from '../components';
-import {Colors, Mock} from '../constants';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import Feather from 'react-native-vector-icons/Feather';
-import {RestaurantService} from '../services';
-import {Display} from '../utils';
-import { useFonts } from 'expo-font';
+} from "../components";
+import { Colors, Mock } from "../constants";
+import Ionicons from "react-native-vector-icons/Ionicons";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import Feather from "react-native-vector-icons/Feather";
+import { RestaurantService } from "../services";
+import { Display } from "../utils";
+import { useFonts } from "expo-font";
 
-const sortStyle = isActive =>
+const sortStyle = (isActive) =>
   isActive
     ? styles.sortListItem
-    : {...styles.sortListItem, borderBottomColor: Colors.DEFAULT_WHITE};
+    : { ...styles.sortListItem, borderBottomColor: Colors.DEFAULT_WHITE };
 
-const HomeScreen = ({navigation}) => {
+const HomeScreen = ({ navigation }) => {
   const [activeCategory, setActiveCategory] = useState();
   const [restaurants, setRestaurants] = useState(null);
-  const [activeSortItem, setActiveSortItem] = useState('recent');
+  const [activeSortItem, setActiveSortItem] = useState("recent");
 
   useEffect(() => {
-    const unsubscribe = navigation.addListener('focus', () => {
-      RestaurantService.getRestaurants().then(response => {
+    const unsubscribe = navigation.addListener("focus", () => {
+      RestaurantService.getRestaurants().then((response) => {
         if (response?.status) {
           setRestaurants(response?.data);
         }
@@ -44,15 +44,15 @@ const HomeScreen = ({navigation}) => {
   }, []);
 
   const [fontsLoaded] = useFonts({
-    'Poppins Black': require('../assets/fonts/Poppins-Black.ttf'),
-    'Poppins Bold': require('../assets/fonts/Poppins-Bold.ttf'),
-    'Poppins Extra Bold': require('../assets/fonts/Poppins-ExtraBold.ttf'),
-    'Poppins Extra Light': require('../assets/fonts/Poppins-ExtraLight.ttf'),
-    'Poppins Light': require('../assets/fonts/Poppins-Light.ttf'),
-    'Poppins Medium': require('../assets/fonts/Poppins-Medium.ttf'),
-    'Poppins Regular': require('../assets/fonts/Poppins-Regular.ttf'),
-    'Poppins Semi Bold': require('../assets/fonts/Poppins-SemiBold.ttf'),
-    'Poppins Thin': require('../assets/fonts/Poppins-Thin.ttf'),
+    "Poppins Black": require("../assets/fonts/Poppins-Black.ttf"),
+    "Poppins Bold": require("../assets/fonts/Poppins-Bold.ttf"),
+    "Poppins Extra Bold": require("../assets/fonts/Poppins-ExtraBold.ttf"),
+    "Poppins Extra Light": require("../assets/fonts/Poppins-ExtraLight.ttf"),
+    "Poppins Light": require("../assets/fonts/Poppins-Light.ttf"),
+    "Poppins Medium": require("../assets/fonts/Poppins-Medium.ttf"),
+    "Poppins Regular": require("../assets/fonts/Poppins-Regular.ttf"),
+    "Poppins Semi Bold": require("../assets/fonts/Poppins-SemiBold.ttf"),
+    "Poppins Thin": require("../assets/fonts/Poppins-Thin.ttf"),
   });
 
   if (!fontsLoaded) {
@@ -86,7 +86,7 @@ const HomeScreen = ({navigation}) => {
             name="bell"
             size={24}
             color={Colors.DEFAULT_WHITE}
-            style={{position: 'absolute', right: 0}}
+            style={{ position: "absolute", right: 0 }}
           />
           <View style={styles.alertBadge}>
             <Text style={styles.alertBadgeText}>12</Text>
@@ -105,11 +105,11 @@ const HomeScreen = ({navigation}) => {
             name="sliders"
             size={20}
             color={Colors.DEFAULT_YELLOW}
-            style={{marginRight: 10}}
+            style={{ marginRight: 10 }}
           />
         </View>
         <View style={styles.categoriesContainer}>
-          {Mock.CATEGORIES.map(({name, logo}) => (
+          {Mock.CATEGORIES.map(({ name, logo }) => (
             <CategoryMenuItem
               key={name}
               name={name}
@@ -128,16 +128,16 @@ const HomeScreen = ({navigation}) => {
           </View>
           <FlatList
             data={restaurants}
-            keyExtractor={item => item?.id}
+            keyExtractor={(item) => item?.id}
             horizontal
             ListHeaderComponent={() => <Separator width={20} />}
             ListFooterComponent={() => <Separator width={20} />}
             ItemSeparatorComponent={() => <Separator width={10} />}
-            renderItem={({item}) => (
+            renderItem={({ item }) => (
               <RestaurantCard
                 {...item}
-                navigate={restaurantId =>
-                  navigation.navigate('Restaurant', {restaurantId})
+                navigate={(restaurantId) =>
+                  navigation.navigate("Restaurant", { restaurantId })
                 }
               />
             )}
@@ -145,37 +145,42 @@ const HomeScreen = ({navigation}) => {
         </View>
         <View style={styles.sortListContainer}>
           <TouchableOpacity
-            style={sortStyle(activeSortItem === 'recent')}
+            style={sortStyle(activeSortItem === "recent")}
             activeOpacity={0.8}
-            onPress={() => setActiveSortItem('recent')}>
+            onPress={() => setActiveSortItem("recent")}
+          >
             <Text style={styles.sortListItemText}>Recent</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={sortStyle(activeSortItem === 'favorite')}
+            style={sortStyle(activeSortItem === "favorite")}
             activeOpacity={0.8}
-            onPress={() => setActiveSortItem('favorite')}>
+            onPress={() => setActiveSortItem("favorite")}
+          >
             <Text style={styles.sortListItemText}>Favorite</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={sortStyle(activeSortItem === 'rating')}
+            style={sortStyle(activeSortItem === "rating")}
             activeOpacity={0.8}
-            onPress={() => setActiveSortItem('rating')}>
+            onPress={() => setActiveSortItem("rating")}
+          >
             <Text style={styles.sortListItemText}>Rating</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={sortStyle(activeSortItem === 'popular')}
+            style={sortStyle(activeSortItem === "popular")}
             activeOpacity={0.8}
-            onPress={() => setActiveSortItem('popular')}>
+            onPress={() => setActiveSortItem("popular")}
+          >
             <Text style={styles.sortListItemText}>Popular</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={sortStyle(activeSortItem === 'trending')}
+            style={sortStyle(activeSortItem === "trending")}
             activeOpacity={0.8}
-            onPress={() => setActiveSortItem('trending')}>
+            onPress={() => setActiveSortItem("trending")}
+          >
             <Text style={styles.sortListItemText}>Trending</Text>
           </TouchableOpacity>
         </View>
-        {restaurants?.map(item => (
+        {restaurants?.map((item) => (
           <RestaurantMediumCard {...item} key={item?.id} />
         ))}
         <Separator height={Display.setHeight(5)} />
@@ -192,19 +197,19 @@ const styles = StyleSheet.create({
   backgroundCurvedContainer: {
     backgroundColor: Colors.DEFAULT_GREEN,
     height: 2000,
-    position: 'absolute',
+    position: "absolute",
     top: -1 * (2000 - 230),
     width: 2000,
     borderRadius: 2000,
-    alignSelf: 'center',
+    alignSelf: "center",
     zIndex: -1,
   },
   headerContainer: {
-    justifyContent: 'space-evenly',
+    justifyContent: "space-evenly",
   },
   locationContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     marginTop: 10,
     marginHorizontal: 20,
   },
@@ -213,23 +218,23 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     fontSize: 13,
     lineHeight: 13 * 1.4,
-    fontFamily: 'Poppins Medium',
+    fontFamily: "Poppins Medium",
   },
   selectedLocationText: {
     color: Colors.DEFAULT_YELLOW,
     marginLeft: 5,
     fontSize: 14,
     lineHeight: 14 * 1.4,
-    fontFamily: 'Poppins Medium',
+    fontFamily: "Poppins Medium",
   },
   alertBadge: {
     borderRadius: 32,
     backgroundColor: Colors.DEFAULT_YELLOW,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     height: 16,
     width: 16,
-    position: 'absolute',
+    position: "absolute",
     right: -2,
     top: -10,
   },
@@ -237,7 +242,7 @@ const styles = StyleSheet.create({
     color: Colors.DEFAULT_WHITE,
     fontSize: 10,
     lineHeight: 10 * 1.4,
-    fontFamily: 'Poppins Bold',
+    fontFamily: "Poppins Bold",
   },
   searchContainer: {
     backgroundColor: Colors.DEFAULT_WHITE,
@@ -245,25 +250,25 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginHorizontal: 20,
     marginTop: 20,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   searchSection: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     marginLeft: 10,
   },
   searchText: {
     color: Colors.DEFAULT_GREY,
     fontSize: 16,
     lineHeight: 16 * 1.4,
-    fontFamily: 'Poppins Medium',
+    fontFamily: "Poppins Medium",
     marginLeft: 10,
   },
   categoriesContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
+    flexDirection: "row",
+    justifyContent: "space-evenly",
     marginTop: 20,
   },
   listContainer: {
@@ -274,9 +279,9 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
   listHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
     marginHorizontal: 20,
     marginBottom: 5,
   },
@@ -284,26 +289,26 @@ const styles = StyleSheet.create({
     color: Colors.DEFAULT_BLACK,
     fontSize: 16,
     lineHeight: 16 * 1.4,
-    fontFamily: 'Poppins Medium',
+    fontFamily: "Poppins Medium",
   },
   listHeaderSubtitle: {
     color: Colors.DEFAULT_YELLOW,
     fontSize: 13,
     lineHeight: 13 * 1.4,
-    fontFamily: 'Poppins Medium',
+    fontFamily: "Poppins Medium",
   },
   sortListContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    alignItems: "center",
     backgroundColor: Colors.DEFAULT_WHITE,
     marginTop: 8,
     elevation: 1,
   },
   sortListItem: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     borderBottomWidth: 1,
     borderBottomColor: Colors.DEFAULT_YELLOW,
     height: 40,
@@ -312,7 +317,7 @@ const styles = StyleSheet.create({
     color: Colors.DEFAULT_BLACK,
     fontSize: 13,
     lineHeight: 13 * 1.4,
-    fontFamily: 'Poppins Semi Bold',
+    fontFamily: "Poppins Semi Bold",
   },
 });
 

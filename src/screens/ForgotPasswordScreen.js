@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   View,
   Text,
@@ -6,31 +6,31 @@ import {
   StatusBar,
   TextInput,
   TouchableOpacity,
-} from 'react-native';
-import {Separator} from '../components';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import Feather from 'react-native-vector-icons/Feather';
-import {Colors} from '../constants';
-import {Display} from '../utils';
-import { useFonts } from 'expo-font';
+} from "react-native";
+import { Separator } from "../components";
+import Ionicons from "react-native-vector-icons/Ionicons";
+import Feather from "react-native-vector-icons/Feather";
+import { Colors } from "../constants";
+import { Display } from "../utils";
+import { useFonts } from "expo-font";
 
 const ForgotPasswordScreen = () => {
   const [fontsLoaded] = useFonts({
-    'Poppins Black': require('../assets/fonts/Poppins-Black.ttf'),
-    'Poppins Bold': require('../assets/fonts/Poppins-Bold.ttf'),
-    'Poppins Extra Bold': require('../assets/fonts/Poppins-ExtraBold.ttf'),
-    'Poppins Extra Light': require('../assets/fonts/Poppins-ExtraLight.ttf'),
-    'Poppins Light': require('../assets/fonts/Poppins-Light.ttf'),
-    'Poppins Medium': require('../assets/fonts/Poppins-Medium.ttf'),
-    'Poppins Regular': require('../assets/fonts/Poppins-Regular.ttf'),
-    'Poppins Semi Bold': require('../assets/fonts/Poppins-SemiBold.ttf'),
-    'Poppins Thin': require('../assets/fonts/Poppins-Thin.ttf'),
+    "Poppins Black": require("../assets/fonts/Poppins-Black.ttf"),
+    "Poppins Bold": require("../assets/fonts/Poppins-Bold.ttf"),
+    "Poppins Extra Bold": require("../assets/fonts/Poppins-ExtraBold.ttf"),
+    "Poppins Extra Light": require("../assets/fonts/Poppins-ExtraLight.ttf"),
+    "Poppins Light": require("../assets/fonts/Poppins-Light.ttf"),
+    "Poppins Medium": require("../assets/fonts/Poppins-Medium.ttf"),
+    "Poppins Regular": require("../assets/fonts/Poppins-Regular.ttf"),
+    "Poppins Semi Bold": require("../assets/fonts/Poppins-SemiBold.ttf"),
+    "Poppins Thin": require("../assets/fonts/Poppins-Thin.ttf"),
   });
 
   if (!fontsLoaded) {
     return null;
   }
-  
+
   return (
     <View style={styles.container}>
       <StatusBar
@@ -57,7 +57,7 @@ const ForgotPasswordScreen = () => {
             name="mail"
             size={22}
             color={Colors.DEFAULT_GREY}
-            style={{marginRight: 10}}
+            style={{ marginRight: 10 }}
           />
           <TextInput
             placeholder="Email"
@@ -80,21 +80,21 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.DEFAULT_WHITE,
   },
   headerContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     paddingVertical: 10,
     paddingHorizontal: 20,
   },
   headerTitle: {
     fontSize: 20,
-    fontFamily: 'Poppins Medium',
+    fontFamily: "Poppins Medium",
     lineHeight: 20 * 1.4,
     width: Display.setWidth(80),
-    textAlign: 'center',
+    textAlign: "center",
   },
   title: {
     fontSize: 20,
-    fontFamily: 'Poppins Medium',
+    fontFamily: "Poppins Medium",
     lineHeight: 20 * 1.4,
     marginTop: 50,
     marginBottom: 10,
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
   },
   content: {
     fontSize: 20,
-    fontFamily: 'Poppins Medium',
+    fontFamily: "Poppins Medium",
     marginTop: 10,
     marginBottom: 20,
     marginHorizontal: 20,
@@ -114,15 +114,15 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     borderWidth: 0.5,
     borderColor: Colors.LIGHT_GREY2,
-    justifyContent: 'center',
+    justifyContent: "center",
   },
   inputSubContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
   },
   inputText: {
     fontSize: 18,
-    textAlignVertical: 'center',
+    textAlignVertical: "center",
     padding: 0,
     height: Display.setHeight(6),
     color: Colors.DEFAULT_BLACK,
@@ -133,15 +133,15 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginHorizontal: 20,
     height: Display.setHeight(6),
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     marginTop: 20,
   },
   signinButtonText: {
     fontSize: 18,
     lineHeight: 18 * 1.4,
     color: Colors.DEFAULT_WHITE,
-    fontFamily: 'Poppins Medium',
+    fontFamily: "Poppins Medium",
   },
 });
 
