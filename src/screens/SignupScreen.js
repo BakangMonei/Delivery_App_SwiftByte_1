@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -7,26 +7,26 @@ import {
   TextInput,
   TouchableOpacity,
   Image,
-} from 'react-native';
-import {Colors, Images} from '../constants';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import AntDesign from 'react-native-vector-icons/AntDesign';
-import {Separator} from '../components';
-import {Display} from '../utils';
-import Feather from 'react-native-vector-icons/Feather';
-import {AuthenicationService} from '../services';
-import LottieView from 'lottie-react-native';
-import { useFonts } from 'expo-font';
+} from "react-native";
+import { Colors, Images } from "../constants";
+import Ionicons from "react-native-vector-icons/Ionicons";
+import AntDesign from "react-native-vector-icons/AntDesign";
+import { Separator } from "../components";
+import { Display } from "../utils";
+import Feather from "react-native-vector-icons/Feather";
+import { AuthenicationService } from "../services";
+import LottieView from "lottie-react-native";
+import { useFonts } from "expo-font";
 
-const inputStyle = state => {
+const inputStyle = (state) => {
   switch (state) {
-    case 'valid':
+    case "valid":
       return {
         ...styles.inputContainer,
         borderWidth: 1,
         borderColor: Colors.SECONDARY_GREEN,
       };
-    case 'invalid':
+    case "invalid":
       return {
         ...styles.inputContainer,
         borderWidth: 1,
@@ -37,24 +37,24 @@ const inputStyle = state => {
   }
 };
 
-const showMarker = state => {
+const showMarker = (state) => {
   switch (state) {
-    case 'valid':
+    case "valid":
       return (
         <AntDesign
           name="checkcircleo"
           color={Colors.SECONDARY_GREEN}
           size={18}
-          style={{marginLeft: 5}}
+          style={{ marginLeft: 5 }}
         />
       );
-    case 'invalid':
+    case "invalid":
       return (
         <AntDesign
           name="closecircleo"
           color={Colors.DEFAULT_RED}
           size={18}
-          style={{marginLeft: 5}}
+          style={{ marginLeft: 5 }}
         />
       );
     default:
@@ -62,17 +62,17 @@ const showMarker = state => {
   }
 };
 
-const SignupScreen = ({navigation}) => {
+const SignupScreen = ({ navigation }) => {
   const [isPasswordShow, setIsPasswordShow] = useState(false);
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [usernameErrorMessage, setUsernameErrorMessage] = useState('');
-  const [emailErrorMessage, setEmailErrorMessage] = useState('');
-  const [emailState, setEmailState] = useState('default');
-  const [usernameState, setUsernameState] = useState('default');
+  const [usernameErrorMessage, setUsernameErrorMessage] = useState("");
+  const [emailErrorMessage, setEmailErrorMessage] = useState("");
+  const [emailState, setEmailState] = useState("default");
+  const [usernameState, setUsernameState] = useState("default");
 
   const register = () => {
     let user = {
@@ -81,7 +81,7 @@ const SignupScreen = ({navigation}) => {
       password,
     };
     setIsLoading(true);
-    AuthenicationService.register(user).then(response => {
+    AuthenicationService.register(user).then((response) => {
       setIsLoading(false);
       if (!response?.status) {
         setErrorMessage(response?.message);
@@ -92,45 +92,44 @@ const SignupScreen = ({navigation}) => {
 
   const checkUserExist = async (type, value) => {
     if (value?.length > 0) {
-      AuthenicationService.checkUserExist(type, value).then(response => {
+      AuthenicationService.checkUserExist(type, value).then((response) => {
         if (response?.status) {
-          type === 'email' && emailErrorMessage
-            ? setEmailErrorMessage('')
+          type === "email" && emailErrorMessage
+            ? setEmailErrorMessage("")
             : null;
 
-          type === 'username' && usernameErrorMessage
-            ? setUsernameErrorMessage('')
+          type === "username" && usernameErrorMessage
+            ? setUsernameErrorMessage("")
             : null;
-          type === 'email' ? setEmailState('valid') : null;
-          type === 'username' ? setUsernameState('valid') : null;
+          type === "email" ? setEmailState("valid") : null;
+          type === "username" ? setUsernameState("valid") : null;
         } else {
-          type === 'email' ? setEmailErrorMessage(response?.message) : null;
-          type === 'username'
+          type === "email" ? setEmailErrorMessage(response?.message) : null;
+          type === "username"
             ? setUsernameErrorMessage(response?.message)
             : null;
-          type === 'email' ? setEmailState('invalid') : null;
-          type === 'username' ? setUsernameState('invalid') : null;
+          type === "email" ? setEmailState("invalid") : null;
+          type === "username" ? setUsernameState("invalid") : null;
         }
       });
     }
   };
 
   const [fontsLoaded] = useFonts({
-    'Poppins Black': require('../assets/fonts/Poppins-Black.ttf'),
-    'Poppins Bold': require('../assets/fonts/Poppins-Bold.ttf'),
-    'Poppins Extra Bold': require('../assets/fonts/Poppins-ExtraBold.ttf'),
-    'Poppins Extra Light': require('../assets/fonts/Poppins-ExtraLight.ttf'),
-    'Poppins Light': require('../assets/fonts/Poppins-Light.ttf'),
-    'Poppins Medium': require('../assets/fonts/Poppins-Medium.ttf'),
-    'Poppins Regular': require('../assets/fonts/Poppins-Regular.ttf'),
-    'Poppins Semi Bold': require('../assets/fonts/Poppins-SemiBold.ttf'),
-    'Poppins Thin': require('../assets/fonts/Poppins-Thin.ttf'),
+    "Poppins Black": require("../assets/fonts/Poppins-Black.ttf"),
+    "Poppins Bold": require("../assets/fonts/Poppins-Bold.ttf"),
+    "Poppins Extra Bold": require("../assets/fonts/Poppins-ExtraBold.ttf"),
+    "Poppins Extra Light": require("../assets/fonts/Poppins-ExtraLight.ttf"),
+    "Poppins Light": require("../assets/fonts/Poppins-Light.ttf"),
+    "Poppins Medium": require("../assets/fonts/Poppins-Medium.ttf"),
+    "Poppins Regular": require("../assets/fonts/Poppins-Regular.ttf"),
+    "Poppins Semi Bold": require("../assets/fonts/Poppins-SemiBold.ttf"),
+    "Poppins Thin": require("../assets/fonts/Poppins-Thin.ttf"),
   });
 
   if (!fontsLoaded) {
     return null;
   }
-
 
   return (
     <View style={styles.container}>
@@ -158,16 +157,16 @@ const SignupScreen = ({navigation}) => {
             name="user"
             size={22}
             color={Colors.DEFAULT_GREY}
-            style={{marginRight: 10}}
+            style={{ marginRight: 10 }}
           />
           <TextInput
             placeholder="Username"
             placeholderTextColor={Colors.DEFAULT_GREY}
             selectionColor={Colors.DEFAULT_GREY}
             style={styles.inputText}
-            onChangeText={text => setUsername(text)}
-            onEndEditing={({nativeEvent: {text}}) =>
-              checkUserExist('username', text)
+            onChangeText={(text) => setUsername(text)}
+            onEndEditing={({ nativeEvent: { text } }) =>
+              checkUserExist("username", text)
             }
           />
           {showMarker(usernameState)}
@@ -180,16 +179,16 @@ const SignupScreen = ({navigation}) => {
             name="mail"
             size={22}
             color={Colors.DEFAULT_GREY}
-            style={{marginRight: 10}}
+            style={{ marginRight: 10 }}
           />
           <TextInput
             placeholder="Email"
             placeholderTextColor={Colors.DEFAULT_GREY}
             selectionColor={Colors.DEFAULT_GREY}
             style={styles.inputText}
-            onChangeText={text => setEmail(text)}
-            onEndEditing={({nativeEvent: {text}}) =>
-              checkUserExist('email', text)
+            onChangeText={(text) => setEmail(text)}
+            onEndEditing={({ nativeEvent: { text } }) =>
+              checkUserExist("email", text)
             }
           />
           {showMarker(emailState)}
@@ -202,7 +201,7 @@ const SignupScreen = ({navigation}) => {
             name="lock"
             size={22}
             color={Colors.DEFAULT_GREY}
-            style={{marginRight: 10}}
+            style={{ marginRight: 10 }}
           />
           <TextInput
             secureTextEntry={isPasswordShow ? false : true}
@@ -210,13 +209,13 @@ const SignupScreen = ({navigation}) => {
             placeholderTextColor={Colors.DEFAULT_GREY}
             selectionColor={Colors.DEFAULT_GREY}
             style={styles.inputText}
-            onChangeText={text => setPassword(text)}
+            onChangeText={(text) => setPassword(text)}
           />
           <Feather
-            name={isPasswordShow ? 'eye' : 'eye-off'}
+            name={isPasswordShow ? "eye" : "eye-off"}
             size={22}
             color={Colors.DEFAULT_GREY}
-            style={{marginRight: 10}}
+            style={{ marginRight: 10 }}
             onPress={() => setIsPasswordShow(!isPasswordShow)}
           />
         </View>
@@ -258,21 +257,21 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.DEFAULT_WHITE,
   },
   headerContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     paddingVertical: 10,
     paddingHorizontal: 20,
   },
   headerTitle: {
     fontSize: 20,
-    fontFamily: 'Poppins Medium',
+    fontFamily: "Poppins Medium",
     lineHeight: 20 * 1.4,
     width: Display.setWidth(80),
-    textAlign: 'center',
+    textAlign: "center",
   },
   title: {
     fontSize: 20,
-    fontFamily: 'Poppins Medium',
+    fontFamily: "Poppins Medium",
     lineHeight: 20 * 1.4,
     marginTop: 50,
     marginBottom: 10,
@@ -280,7 +279,7 @@ const styles = StyleSheet.create({
   },
   content: {
     fontSize: 20,
-    fontFamily: 'Poppins Medium',
+    fontFamily: "Poppins Medium",
     marginTop: 10,
     marginBottom: 20,
     marginHorizontal: 20,
@@ -292,15 +291,15 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     borderWidth: 0.5,
     borderColor: Colors.LIGHT_GREY2,
-    justifyContent: 'center',
+    justifyContent: "center",
   },
   inputSubContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
   },
   inputText: {
     fontSize: 18,
-    textAlignVertical: 'center',
+    textAlignVertical: "center",
     padding: 0,
     height: Display.setHeight(6),
     color: Colors.DEFAULT_BLACK,
@@ -311,23 +310,23 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginHorizontal: 20,
     height: Display.setHeight(6),
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     marginTop: 20,
   },
   signinButtonText: {
     fontSize: 18,
     lineHeight: 18 * 1.4,
     color: Colors.DEFAULT_WHITE,
-    fontFamily: 'Poppins Medium',
+    fontFamily: "Poppins Medium",
   },
   orText: {
     fontSize: 15,
     lineHeight: 15 * 1.4,
     color: Colors.DEFAULT_BLACK,
-    fontFamily: 'Poppins Medium',
+    fontFamily: "Poppins Medium",
     marginLeft: 5,
-    alignSelf: 'center',
+    alignSelf: "center",
     marginTop: 20,
   },
   facebookButton: {
@@ -336,34 +335,34 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     borderRadius: 8,
     marginVertical: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   googleButton: {
     backgroundColor: Colors.GOOGLE_BLUE,
     paddingVertical: 15,
     marginHorizontal: 20,
     borderRadius: 8,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   socialButtonsContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '100%',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "100%",
   },
   socialSigninButtonText: {
     color: Colors.DEFAULT_WHITE,
     fontSize: 13,
     lineHeight: 13 * 1.4,
-    fontFamily: 'Poppins Medium',
+    fontFamily: "Poppins Medium",
   },
   signinButtonLogoContainer: {
     backgroundColor: Colors.DEFAULT_WHITE,
     padding: 2,
     borderRadius: 3,
-    position: 'absolute',
+    position: "absolute",
     left: 25,
   },
   signinButtonLogo: {
@@ -374,7 +373,7 @@ const styles = StyleSheet.create({
     fontSize: 10,
     lineHeight: 10 * 1.4,
     color: Colors.DEFAULT_RED,
-    fontFamily: 'Poppins Medium',
+    fontFamily: "Poppins Medium",
     marginHorizontal: 20,
     marginVertical: 3,
   },

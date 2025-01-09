@@ -1,18 +1,18 @@
-import React from 'react';
-import {View, Text, StyleSheet, StatusBar, Image} from 'react-native';
-import {Colors, Images} from '../constants';
-import {Display} from '../utils';
-import { useFonts } from 'expo-font';
+import React from "react";
+import { View, Text, StyleSheet, StatusBar, Image } from "react-native";
+import { Colors, Images } from "../constants";
+import { Display } from "../utils";
+import { useFonts } from "expo-font";
 
 const SplashScreen = () => {
   const [fontsLoaded] = useFonts({
-    'Poppins Light': require('../assets/fonts/Poppins-Light.ttf'),
-    'Poppins Medium': require('../assets/fonts/Poppins-Medium.ttf'),
-    'Poppins Regular': require('../assets/fonts/Poppins-Regular.ttf'),
-    'Poppins Semi Bold': require('../assets/fonts/Poppins-SemiBold.ttf'),
-    'Poppins Thin': require('../assets/fonts/Poppins-Thin.ttf'),
+    "Poppins Light": require("../assets/fonts/Poppins-Light.ttf"),
+    "Poppins Medium": require("../assets/fonts/Poppins-Medium.ttf"),
+    "Poppins Regular": require("../assets/fonts/Poppins-Regular.ttf"),
+    "Poppins Semi Bold": require("../assets/fonts/Poppins-SemiBold.ttf"),
+    "Poppins Thin": require("../assets/fonts/Poppins-Thin.ttf"),
   });
-  
+
   if (!fontsLoaded) {
     return null;
   }
@@ -30,13 +30,11 @@ const SplashScreen = () => {
   );
 };
 
-
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     backgroundColor: Colors.DEFAULT_GREEN,
   },
   image: {
@@ -46,7 +44,7 @@ const styles = StyleSheet.create({
   titleText: {
     color: Colors.DEFAULT_WHITE,
     fontSize: 32,
-    fontFamily: 'Poppins Light',
+    fontFamily: "Poppins Light",
   },
 });
 

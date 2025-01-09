@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, { useRef, useState } from "react";
 import {
   View,
   Text,
@@ -6,41 +6,39 @@ import {
   StatusBar,
   TextInput,
   TouchableOpacity,
-} from 'react-native';
-import {Separator} from '../components';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import {Colors} from '../constants';
-import {Display} from '../utils';
-import { useFonts } from 'expo-font';
-
+} from "react-native";
+import { Separator } from "../components";
+import Ionicons from "react-native-vector-icons/Ionicons";
+import { Colors } from "../constants";
+import { Display } from "../utils";
+import { useFonts } from "expo-font";
 
 const VerificationScreen = ({
   route: {
-    params: {phoneNumber},
+    params: { phoneNumber },
   },
 }) => {
   const firstInput = useRef();
   const secondInput = useRef();
   const thirdInput = useRef();
   const fourthInput = useRef();
-  const [otp, setOtp] = useState({1: '', 2: '', 3: '', 4: ''});
+  const [otp, setOtp] = useState({ 1: "", 2: "", 3: "", 4: "" });
 
   const [fontsLoaded] = useFonts({
-    'Poppins Black': require('../assets/fonts/Poppins-Black.ttf'),
-    'Poppins Bold': require('../assets/fonts/Poppins-Bold.ttf'),
-    'Poppins Extra Bold': require('../assets/fonts/Poppins-ExtraBold.ttf'),
-    'Poppins Extra Light': require('../assets/fonts/Poppins-ExtraLight.ttf'),
-    'Poppins Light': require('../assets/fonts/Poppins-Light.ttf'),
-    'Poppins Medium': require('../assets/fonts/Poppins-Medium.ttf'),
-    'Poppins Regular': require('../assets/fonts/Poppins-Regular.ttf'),
-    'Poppins Semi Bold': require('../assets/fonts/Poppins-SemiBold.ttf'),
-    'Poppins Thin': require('../assets/fonts/Poppins-Thin.ttf'),
+    "Poppins Black": require("../assets/fonts/Poppins-Black.ttf"),
+    "Poppins Bold": require("../assets/fonts/Poppins-Bold.ttf"),
+    "Poppins Extra Bold": require("../assets/fonts/Poppins-ExtraBold.ttf"),
+    "Poppins Extra Light": require("../assets/fonts/Poppins-ExtraLight.ttf"),
+    "Poppins Light": require("../assets/fonts/Poppins-Light.ttf"),
+    "Poppins Medium": require("../assets/fonts/Poppins-Medium.ttf"),
+    "Poppins Regular": require("../assets/fonts/Poppins-Regular.ttf"),
+    "Poppins Semi Bold": require("../assets/fonts/Poppins-SemiBold.ttf"),
+    "Poppins Thin": require("../assets/fonts/Poppins-Thin.ttf"),
   });
 
   if (!fontsLoaded) {
     return null;
   }
-
 
   return (
     <View style={styles.container}>
@@ -60,7 +58,7 @@ const VerificationScreen = ({
       </View>
       <Text style={styles.title}>OTP Verification</Text>
       <Text style={styles.content}>
-        Enter the OTP number just sent you at{' '}
+        Enter the OTP number just sent you at{" "}
         <Text style={styles.phoneNumberText}>{phoneNumber}</Text>
       </Text>
       <View style={styles.otpContainer}>
@@ -70,8 +68,8 @@ const VerificationScreen = ({
             keyboardType="number-pad"
             maxLength={1}
             ref={firstInput}
-            onChangeText={text => {
-              setOtp({...otp, 1: text});
+            onChangeText={(text) => {
+              setOtp({ ...otp, 1: text });
               text && secondInput.current.focus();
             }}
           />
@@ -82,8 +80,8 @@ const VerificationScreen = ({
             keyboardType="number-pad"
             maxLength={1}
             ref={secondInput}
-            onChangeText={text => {
-              setOtp({...otp, 2: text});
+            onChangeText={(text) => {
+              setOtp({ ...otp, 2: text });
               text ? thirdInput.current.focus() : firstInput.current.focus();
             }}
           />
@@ -94,8 +92,8 @@ const VerificationScreen = ({
             keyboardType="number-pad"
             maxLength={1}
             ref={thirdInput}
-            onChangeText={text => {
-              setOtp({...otp, 3: text});
+            onChangeText={(text) => {
+              setOtp({ ...otp, 3: text });
               text ? fourthInput.current.focus() : secondInput.current.focus();
             }}
           />
@@ -106,8 +104,8 @@ const VerificationScreen = ({
             keyboardType="number-pad"
             maxLength={1}
             ref={fourthInput}
-            onChangeText={text => {
-              setOtp({...otp, 4: text});
+            onChangeText={(text) => {
+              setOtp({ ...otp, 4: text });
               !text && thirdInput.current.focus();
             }}
           />
@@ -115,7 +113,8 @@ const VerificationScreen = ({
       </View>
       <TouchableOpacity
         style={styles.signinButton}
-        onPress={() => console.log(otp)}>
+        onPress={() => console.log(otp)}
+      >
         <Text style={styles.signinButtonText}>Verify</Text>
       </TouchableOpacity>
     </View>
@@ -128,21 +127,21 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.DEFAULT_WHITE,
   },
   headerContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     paddingVertical: 10,
     paddingHorizontal: 20,
   },
   headerTitle: {
     fontSize: 20,
-    fontFamily: 'Poppins Medium',
+    fontFamily: "Poppins Medium",
     lineHeight: 20 * 1.4,
     width: Display.setWidth(80),
-    textAlign: 'center',
+    textAlign: "center",
   },
   title: {
     fontSize: 20,
-    fontFamily: 'Poppins Medium',
+    fontFamily: "Poppins Medium",
     lineHeight: 20 * 1.4,
     marginTop: 50,
     marginBottom: 10,
@@ -150,23 +149,23 @@ const styles = StyleSheet.create({
   },
   content: {
     fontSize: 20,
-    fontFamily: 'Poppins Medium',
+    fontFamily: "Poppins Medium",
     marginTop: 10,
     marginBottom: 20,
     marginHorizontal: 20,
   },
   phoneNumberText: {
     fontSize: 18,
-    fontFamily: 'Poppins Regular',
+    fontFamily: "Poppins Regular",
     lineHeight: 18 * 1.4,
     color: Colors.DEFAULT_YELLOW,
   },
   otpContainer: {
     marginHorizontal: 20,
     marginBottom: 20,
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
-    flexDirection: 'row',
+    justifyContent: "space-evenly",
+    alignItems: "center",
+    flexDirection: "row",
   },
   otpBox: {
     borderRadius: 5,
@@ -177,7 +176,7 @@ const styles = StyleSheet.create({
     fontSize: 25,
     color: Colors.DEFAULT_BLACK,
     padding: 0,
-    textAlign: 'center',
+    textAlign: "center",
     paddingHorizontal: 18,
     paddingVertical: 10,
   },
@@ -186,15 +185,15 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginHorizontal: 20,
     height: Display.setHeight(6),
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     marginTop: 20,
   },
   signinButtonText: {
     fontSize: 18,
     lineHeight: 18 * 1.4,
     color: Colors.DEFAULT_WHITE,
-    fontFamily: 'Poppins Medium',
+    fontFamily: "Poppins Medium",
   },
 });
 
