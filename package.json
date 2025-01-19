@@ -2,6 +2,11 @@
   "name": "react_native_food_app",
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
+  "author": {
+    "name": "Bakang Monei",
+    "email": "bakangmonei2@gmail.com",
+    "phone": "+267 7"
+  },
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
