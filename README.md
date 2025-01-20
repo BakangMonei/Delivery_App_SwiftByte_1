@@ -1,4 +1,4 @@
-# React_Native_Food_App
+# ReactNative
 
 The Food Delivery App is created using React Native with support of few other popular third party libraries
 
