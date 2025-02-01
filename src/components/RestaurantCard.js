@@ -1,18 +1,17 @@
-import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
-import {Colors} from '../constants';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import {StaticImageService} from '../services';
-import {useDispatch, useSelector} from 'react-redux';
-import {BookmarkAction} from '../actions';
-import { useFonts } from 'expo-font';
-
+import React from "react";
+import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
+import { Colors } from "../constants";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
+import Ionicons from "react-native-vector-icons/Ionicons";
+import { StaticImageService } from "../services";
+import { useDispatch, useSelector } from "react-redux";
+import { BookmarkAction } from "../actions";
+import { useFonts } from "expo-font";
 
 const RestaurantCard = ({
   id,
   name,
-  images: {poster},
+  images: { poster },
   tags,
   distance,
   time,
@@ -20,49 +19,51 @@ const RestaurantCard = ({
 }) => {
   const dispatch = useDispatch();
   const isBookmarked = useSelector(
-    state =>
-      state?.bookmarkState?.bookmarks?.filter(item => item?.restaurantId === id)
-        ?.length > 0,
+    (state) =>
+      state?.bookmarkState?.bookmarks?.filter(
+        (item) => item?.restaurantId === id
+      )?.length > 0
   );
   const addBookmark = () =>
-    dispatch(BookmarkAction.addBookmark({restaurantId: id}));
+    dispatch(BookmarkAction.addBookmark({ restaurantId: id }));
   const removeBookmark = () =>
-    dispatch(BookmarkAction.removeBookmark({restaurantId: id}));
-    
+    dispatch(BookmarkAction.removeBookmark({ restaurantId: id }));
+
   const [fontsLoaded] = useFonts({
-    'Poppins Black': require('../assets/fonts/Poppins-Black.ttf'),
-    'Poppins Bold': require('../assets/fonts/Poppins-Bold.ttf'),
-    'Poppins Extra Bold': require('../assets/fonts/Poppins-ExtraBold.ttf'),
-    'Poppins Extra Light': require('../assets/fonts/Poppins-ExtraLight.ttf'),
-    'Poppins Light': require('../assets/fonts/Poppins-Light.ttf'),
-    'Poppins Medium': require('../assets/fonts/Poppins-Medium.ttf'),
-    'Poppins Regular': require('../assets/fonts/Poppins-Regular.ttf'),
-    'Poppins Semi Bold': require('../assets/fonts/Poppins-SemiBold.ttf'),
-    'Poppins Thin': require('../assets/fonts/Poppins-Thin.ttf'),
+    "Poppins Black": require("../assets/fonts/Poppins-Black.ttf"),
+    "Poppins Bold": require("../assets/fonts/Poppins-Bold.ttf"),
+    "Poppins Extra Bold": require("../assets/fonts/Poppins-ExtraBold.ttf"),
+    "Poppins Extra Light": require("../assets/fonts/Poppins-ExtraLight.ttf"),
+    "Poppins Light": require("../assets/fonts/Poppins-Light.ttf"),
+    "Poppins Medium": require("../assets/fonts/Poppins-Medium.ttf"),
+    "Poppins Regular": require("../assets/fonts/Poppins-Regular.ttf"),
+    "Poppins Semi Bold": require("../assets/fonts/Poppins-SemiBold.ttf"),
+    "Poppins Thin": require("../assets/fonts/Poppins-Thin.ttf"),
   });
 
   if (!fontsLoaded) {
     return null;
   }
-  
+
   return (
     <TouchableOpacity
       style={styles.container}
       activeOpacity={0.8}
-      onPress={() => navigate(id)}>
+      onPress={() => navigate(id)}
+    >
       <Ionicons
-        name={isBookmarked ? 'bookmark' : 'bookmark-outline'}
+        name={isBookmarked ? "bookmark" : "bookmark-outline"}
         color={Colors.DEFAULT_YELLOW}
         size={24}
         style={styles.bookmark}
         onPress={() => (isBookmarked ? removeBookmark() : addBookmark())}
       />
       <Image
-        source={{uri: StaticImageService.getPoster(poster)}}
+        source={{ uri: StaticImageService.getPoster(poster) }}
         style={styles.posterStyle}
       />
       <Text style={styles.titleText}>{name}</Text>
-      <Text style={styles.tagText}>{tags?.join(' • ')}</Text>
+      <Text style={styles.tagText}>{tags?.join(" • ")}</Text>
       <View style={styles.footerContainer}>
         <View style={styles.rowAndCenter}>
           <FontAwesome name="star" size={14} color={Colors.DEFAULT_YELLOW} />
@@ -95,7 +96,7 @@ const RestaurantCard = ({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: "center",
     backgroundColor: Colors.DEFAULT_WHITE,
     borderRadius: 10,
     elevation: 3,
@@ -111,31 +112,31 @@ const styles = StyleSheet.create({
     marginLeft: 8,
     fontSize: 15,
     lineHeight: 15 * 1.4,
-    fontFamily: 'Poppins Semi Bold',
+    fontFamily: "Poppins Semi Bold",
     color: Colors.DEFAULT_BLACK,
   },
   tagText: {
     marginLeft: 8,
     fontSize: 11,
     lineHeight: 11 * 1.4,
-    fontFamily: 'Poppins Medium',
+    fontFamily: "Poppins Medium",
     color: Colors.DEFAULT_GREY,
     marginBottom: 5,
   },
   footerContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     marginHorizontal: 8,
     marginBottom: 6,
-    justifyContent: 'space-between',
+    justifyContent: "space-between",
   },
   rowAndCenter: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
   },
   timeAndDistanceContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     paddingHorizontal: 5,
     paddingVertical: 3,
     backgroundColor: Colors.LIGHT_YELLOW,
@@ -145,24 +146,24 @@ const styles = StyleSheet.create({
   timeAndDistanceText: {
     fontSize: 10,
     lineHeight: 10 * 1.4,
-    fontFamily: 'Poppins Bold',
+    fontFamily: "Poppins Bold",
     color: Colors.DEFAULT_YELLOW,
   },
   ratingText: {
     marginLeft: 5,
     fontSize: 10,
     lineHeight: 10 * 1.4,
-    fontFamily: 'Poppins Bold',
+    fontFamily: "Poppins Bold",
     color: Colors.DEFAULT_BLACK,
   },
   reviewsText: {
     fontSize: 10,
     lineHeight: 10 * 1.4,
-    fontFamily: 'Poppins Bold',
+    fontFamily: "Poppins Bold",
     color: Colors.DEFAULT_BLACK,
   },
   bookmark: {
-    position: 'absolute',
+    position: "absolute",
     top: 10,
     right: 10,
     zIndex: 10,

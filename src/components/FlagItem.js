@@ -1,20 +1,20 @@
-import React from 'react';
-import {Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
-import {Colors} from '../constants';
-import {StaticImageService} from '../services';
-import { useFonts } from 'expo-font';
+import React from "react";
+import { Text, StyleSheet, TouchableOpacity, Image } from "react-native";
+import { Colors } from "../constants";
+import { StaticImageService } from "../services";
+import { useFonts } from "expo-font";
 
-const FlagItem = ({code, name, dial_code, onPress}) => {
+const FlagItem = ({ code, name, dial_code, onPress }) => {
   const [fontsLoaded] = useFonts({
-    'Poppins Black': require('../assets/fonts/Poppins-Black.ttf'),
-    'Poppins Bold': require('../assets/fonts/Poppins-Bold.ttf'),
-    'Poppins Extra Bold': require('../assets/fonts/Poppins-ExtraBold.ttf'),
-    'Poppins Extra Light': require('../assets/fonts/Poppins-ExtraLight.ttf'),
-    'Poppins Light': require('../assets/fonts/Poppins-Light.ttf'),
-    'Poppins Medium': require('../assets/fonts/Poppins-Medium.ttf'),
-    'Poppins Regular': require('../assets/fonts/Poppins-Regular.ttf'),
-    'Poppins Semi Bold': require('../assets/fonts/Poppins-SemiBold.ttf'),
-    'Poppins Thin': require('../assets/fonts/Poppins-Thin.ttf'),
+    "Poppins Black": require("../assets/fonts/Poppins-Black.ttf"),
+    "Poppins Bold": require("../assets/fonts/Poppins-Bold.ttf"),
+    "Poppins Extra Bold": require("../assets/fonts/Poppins-ExtraBold.ttf"),
+    "Poppins Extra Light": require("../assets/fonts/Poppins-ExtraLight.ttf"),
+    "Poppins Light": require("../assets/fonts/Poppins-Light.ttf"),
+    "Poppins Medium": require("../assets/fonts/Poppins-Medium.ttf"),
+    "Poppins Regular": require("../assets/fonts/Poppins-Regular.ttf"),
+    "Poppins Semi Bold": require("../assets/fonts/Poppins-SemiBold.ttf"),
+    "Poppins Thin": require("../assets/fonts/Poppins-Thin.ttf"),
   });
 
   if (!fontsLoaded) {
@@ -24,10 +24,11 @@ const FlagItem = ({code, name, dial_code, onPress}) => {
   return (
     <TouchableOpacity
       style={styles.container}
-      onPress={() => onPress({code, name, dial_code})}>
+      onPress={() => onPress({ code, name, dial_code })}
+    >
       <Image
         style={styles.flagImage}
-        source={{uri: StaticImageService.getFlagIcon(code)}}
+        source={{ uri: StaticImageService.getFlagIcon(code) }}
       />
       <Text style={styles.flagText}>{dial_code}</Text>
       <Text style={styles.flagText}>{name}</Text>
@@ -37,8 +38,8 @@ const FlagItem = ({code, name, dial_code, onPress}) => {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     paddingHorizontal: 10,
   },
   flagImage: {
@@ -50,7 +51,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     lineHeight: 14 * 1.4,
     color: Colors.DEFAULT_BLACK,
-    fontFamily: 'Poppins Medium',
+    fontFamily: "Poppins Medium",
     marginRight: 10,
   },
 });

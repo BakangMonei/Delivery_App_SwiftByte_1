@@ -1,22 +1,28 @@
-import React from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import {Colors, Images} from '../constants';
-import {StaticImageService} from '../services';
-import {Display} from '../utils';
-import { useFonts } from 'expo-font';
+import React from "react";
+import { View, Text, StyleSheet, Image } from "react-native";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
+import { Colors, Images } from "../constants";
+import { StaticImageService } from "../services";
+import { Display } from "../utils";
+import { useFonts } from "expo-font";
 
-const RestaurantMediumCard = ({name, images: {logo}, time, distance, tags}) => {
+const RestaurantMediumCard = ({
+  name,
+  images: { logo },
+  time,
+  distance,
+  tags,
+}) => {
   const [fontsLoaded] = useFonts({
-    'Poppins Black': require('../assets/fonts/Poppins-Black.ttf'),
-    'Poppins Bold': require('../assets/fonts/Poppins-Bold.ttf'),
-    'Poppins Extra Bold': require('../assets/fonts/Poppins-ExtraBold.ttf'),
-    'Poppins Extra Light': require('../assets/fonts/Poppins-ExtraLight.ttf'),
-    'Poppins Light': require('../assets/fonts/Poppins-Light.ttf'),
-    'Poppins Medium': require('../assets/fonts/Poppins-Medium.ttf'),
-    'Poppins Regular': require('../assets/fonts/Poppins-Regular.ttf'),
-    'Poppins Semi Bold': require('../assets/fonts/Poppins-SemiBold.ttf'),
-    'Poppins Thin': require('../assets/fonts/Poppins-Thin.ttf'),
+    "Poppins Black": require("../assets/fonts/Poppins-Black.ttf"),
+    "Poppins Bold": require("../assets/fonts/Poppins-Bold.ttf"),
+    "Poppins Extra Bold": require("../assets/fonts/Poppins-ExtraBold.ttf"),
+    "Poppins Extra Light": require("../assets/fonts/Poppins-ExtraLight.ttf"),
+    "Poppins Light": require("../assets/fonts/Poppins-Light.ttf"),
+    "Poppins Medium": require("../assets/fonts/Poppins-Medium.ttf"),
+    "Poppins Regular": require("../assets/fonts/Poppins-Regular.ttf"),
+    "Poppins Semi Bold": require("../assets/fonts/Poppins-SemiBold.ttf"),
+    "Poppins Thin": require("../assets/fonts/Poppins-Thin.ttf"),
   });
 
   if (!fontsLoaded) {
@@ -27,7 +33,7 @@ const RestaurantMediumCard = ({name, images: {logo}, time, distance, tags}) => {
     <View style={styles.container}>
       <View>
         <Image
-          source={{uri: StaticImageService.getLogo(logo)}}
+          source={{ uri: StaticImageService.getLogo(logo) }}
           style={styles.posterStyle}
         />
       </View>
@@ -40,7 +46,7 @@ const RestaurantMediumCard = ({name, images: {logo}, time, distance, tags}) => {
             <Text style={styles.reviewsText}>({233})</Text>
           </View>
         </View>
-        <Text style={styles.tagsText}>{tags?.join(' • ')}</Text>
+        <Text style={styles.tagsText}>{tags?.join(" • ")}</Text>
         <View style={styles.deliveryDetailsContainer}>
           <View style={styles.rowAndCenter}>
             <Image
@@ -68,8 +74,8 @@ const RestaurantMediumCard = ({name, images: {logo}, time, distance, tags}) => {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     marginHorizontal: 15,
     elevation: 1,
     borderRadius: 8,
@@ -87,26 +93,26 @@ const styles = StyleSheet.create({
     marginHorizontal: 8,
   },
   titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
   },
   deliveryDetailsContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
   },
   titleText: {
     fontSize: 14,
     lineHeight: 14 * 1.4,
-    fontFamily: 'Poppins Bold',
+    fontFamily: "Poppins Bold",
     color: Colors.DEFAULT_BLACK,
     marginBottom: 5,
   },
   tagsText: {
     fontSize: 11,
     lineHeight: 11 * 1.4,
-    fontFamily: 'Poppins Medium',
+    fontFamily: "Poppins Medium",
     color: Colors.DEFAULT_GREY,
     marginBottom: 7,
   },
@@ -114,7 +120,7 @@ const styles = StyleSheet.create({
     marginLeft: 3,
     fontSize: 12,
     lineHeight: 12 * 1.4,
-    fontFamily: 'Poppins Semi Bold',
+    fontFamily: "Poppins Semi Bold",
     color: Colors.DEFAULT_BLACK,
   },
   deliveryDetailsIcon: {
@@ -122,20 +128,20 @@ const styles = StyleSheet.create({
     width: 16,
   },
   rowAndCenter: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
   },
   ratingText: {
     marginLeft: 5,
     fontSize: 10,
     lineHeight: 10 * 1.4,
-    fontFamily: 'Poppins Bold',
+    fontFamily: "Poppins Bold",
     color: Colors.DEFAULT_BLACK,
   },
   reviewsText: {
     fontSize: 10,
     lineHeight: 10 * 1.4,
-    fontFamily: 'Poppins Medium',
+    fontFamily: "Poppins Medium",
     color: Colors.DEFAULT_BLACK,
   },
 });
